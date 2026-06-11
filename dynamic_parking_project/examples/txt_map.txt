@@ -1,3 +1,5 @@
-1 1 1 1 1
-2 3 0 3 2
-1 1 1 1 1
+S S S S S
+P D S D P
+S S S S S
+W W S W W
+S S S S S

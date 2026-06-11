@@ -28,11 +28,21 @@ class Dynamic_graph:
     
     def get_neighbors(self,node_id : coordinate) -> list[Tuple[coordinate, float]]:
         neighbors = []
-        for node_id in self.adj_list:
-            for v_id, edge in self.adj_list[node_id].items():
-                neighbors.append((v_id,edge.weight))
+
+        for v_id, edge in self.adj_list[node_id].items():
+            neighbors.append((v_id, edge.weight))
         return neighbors
     
+    def get_predecessors(self, node_id):
+        predecessors = []
+
+        for u_id, neighbors in self.adj_list.items():
+
+            if node_id in neighbors:
+                predecessors.append(u_id)
+
+        return predecessors
+        
     def update_edge_weight(self, u_id : coordinate, v_id : coordinate, add_weight : float):
         if u_id in self.adj_list and v_id in self.adj_list[u_id]:
             self.adj_list[u_id][v_id].update_dynamic_weight(add_weight)
