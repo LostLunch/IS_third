@@ -123,3 +123,12 @@ class DStarLite:
             current = next_node
 
         return path
+    
+    def dstar_lite_search(self,graph, start, goal):
+        planner = DStarLite(graph, start, goal)
+
+        path = planner.get_path()
+
+        cost = planner.get_cost()
+
+        return path, cost
