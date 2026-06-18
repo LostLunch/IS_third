@@ -2,12 +2,12 @@ from typing import Tuple, Dict, List
 from .edge import Edge
 from .node import Node
 
-coordinate = Tuple[int,int,int]
+coordinate = tuple[int,int,int]
 
 class Dynamic_graph:
     def __init__(self) -> None:
         self.nodes : Dict[coordinate,Node] = {}
-        self.adj_list : Dict[coordinate, Dict[coordinate], Edge] = {} #이중 딕셔너리리
+        self.adj_list : Dict[coordinate, Dict[coordinate, Edge]] = {} #이중 딕셔너리
 
     def add_node(self, x : int, y : int, z : int = 0) -> Node:
         node = Node(x,y,z)
@@ -26,13 +26,23 @@ class Dynamic_graph:
 
         self.adj_list[u_id][v_id] = edge
     
-    def get_neighbors(self,node_id : coordinate) -> list[coordinate, float]:
+    def get_neighbors(self,node_id : coordinate) -> list[Tuple[coordinate, float]]:
         neighbors = []
-        for node_id in self.adj_list:
-            for v_id, edge in self.adj_list[node_id].itmes():
-                neighbors.append((v_id,edge.weight))
+
+        for v_id, edge in self.adj_list[node_id].items():
+            neighbors.append((v_id, edge.weight))
         return neighbors
     
-    def update_edge_weight(self, u_id : coordinate, v_id : coordinate, add_wieght : float):
+    def get_predecessors(self, node_id):
+        predecessors = []
+
+        for u_id, neighbors in self.adj_list.items():
+
+            if node_id in neighbors:
+                predecessors.append(u_id)
+
+        return predecessors
+        
+    def update_edge_weight(self, u_id : coordinate, v_id : coordinate, add_weight : float):
         if u_id in self.adj_list and v_id in self.adj_list[u_id]:
-            self.adj_list[u_id][v_id].update_dynamic_weight(add_wieght)
+            self.adj_list[u_id][v_id].update_dynamic_weight(add_weight)
