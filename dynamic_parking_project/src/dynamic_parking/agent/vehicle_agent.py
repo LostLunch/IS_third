@@ -5,7 +5,6 @@ class Agent:
     def __init__(self, id : int, graph : dp.Dynamic_graph, start : tuple[int, int, int], planner):
         self.id = id
         self.graph = graph
-        self.start = start
         self.current_node = start
         self.planner = planner
         self.path = []
@@ -15,7 +14,7 @@ class Agent:
 
     def plan(self, target : tuple[int, int, int]):
         self.target = target
-        self.path, self.total_cost = self.planner(self.graph, self.start, self.target)
+        self.path, _ = self.planner(self.graph, self.current_node, self.target)
 
     def move(self):
 
@@ -23,7 +22,7 @@ class Agent:
 
             next_node = self.path[1]
 
-            edge = self.graph.get_edge(self.current_node, next_node)
+            edge = self.graph.adj_list[self.current_node][next_node]
 
             self.total_cost += edge.weight
             self.current_node = next_node
@@ -32,3 +31,12 @@ class Agent:
 
     def is_parked(self):
         return self.current_node == self.target
+    
+    def __repr__(self):
+        return (
+            f"Agent("
+            f"id={self.id}, "
+            f"current={self.current_node}, "
+            f"target={self.target}"
+            f")"
+        )

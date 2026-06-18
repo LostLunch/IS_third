@@ -1,7 +1,7 @@
 import dynamic_parking as dp
 
 def main():
-    matrix = dp.parse_txt("D:\\Github_repo\\IS_third\\dynamic_parking_project\\examples\\txt_map.txt")
+    matrix,car_pos = dp.parse_txt("dynamic_parking_project/examples/map_example/map1.txt")
     grid = dp.ParkingGrid(matrix)
     graph = dp.convert_grid_to_graph(grid)
 

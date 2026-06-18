@@ -22,6 +22,8 @@ from .algorithms.dstar_lite import DStarLite
 from .algorithms.parking_serach import search_parking_pos
 from .parking_abstract.parse import parse_txt
 from .parking_abstract.converter import convert_grid_to_graph
+from .agent.vehicle_agent import Agent
+from .environment.environment import Environment
 
 __all__ = [
 	"algorithms",
@@ -33,5 +35,9 @@ __all__ = [
 	"search_parking_pos",
 	"parse_txt",
     "convert_grid_to_graph",
+    "Agent",
+	"Environment",
+    "DStarLite",
+    "dijkstra"
 ]
 

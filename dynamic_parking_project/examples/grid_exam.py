@@ -9,7 +9,7 @@ def main():
     print("1. TXT -> 2차원 배열")
     print("=" * 50)
 
-    matrix = parse_txt(r"D:\Github_repo\IS_third\dynamic_parking_project\examples\txt_map.txt")
+    matrix,car_pos = parse_txt(r"dynamic_parking_project/examples/map_example/map1.txt")
 
     for row in matrix:
         print(row)

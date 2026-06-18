@@ -1,9 +1,7 @@
 from dynamic_parking.graph.dynamic_graph import Dynamic_graph
 from heapq import heappop, heappush
 
-def search_parking_pos(current_node, empty_pos : set, graph : Dynamic_graph):
-    x, y, _ = current_node
-    
+def search_parking_pos(current_node, empty_pos : set, graph : Dynamic_graph) -> tuple[int, int, int] | None:
     dist = {}
     origin ={}
 
@@ -17,7 +15,6 @@ def search_parking_pos(current_node, empty_pos : set, graph : Dynamic_graph):
         cost, node = heappop(pq)
         if node == current_node:
             return origin[node]
-        
         for v_id, edge in graph.adj_list.get(node,{}).items():
             new_cost = cost + edge.weight
 

@@ -27,11 +27,9 @@ def convert_grid_to_graph(grid : ParkingGrid) -> DynamicGraph:
                         continue
                     
                     if current_type == ParkingGrid.PARKING:
-                        if next_type == ParkingGrid.PARKING_DIRECTION:
+                        if next_type == ParkingGrid.STREET:
                             graph.add_edge(current_id, next_id, base_weight=1.0)
                     elif current_type == ParkingGrid.STREET:
-                        if next_type != ParkingGrid.PARKING:
+                        if next_type in (ParkingGrid.STREET, ParkingGrid.PARKING):
                             graph.add_edge(current_id, next_id, base_weight=1.0)
-                    else:
-                        graph.add_edge(current_id, next_id, base_weight=1.0)
     return graph
